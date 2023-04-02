@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrieren</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="credentials" (ngSubmit)="register()">
+
+    <!-- Zeigt eine Fehlermeldung an, wenn die Registration scheitert. -->
+    <ion-item  *ngIf="registerError" class="ion-margin-bottom" style="color: #ff4961;">
+      <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+      <ion-label>E-Mail wird bereits verwendet</ion-label>
+    </ion-item>
+
+    <!-- Eingabefeld für die E-Mail -->
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="email" placeholder="E-Mail" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-list *ngIf="(email.dirty || email.touched) && email.errors" class="ion-margin-bottom">
+      <ion-item *ngIf="(email.dirty || email.touched) && email.errors" style="color: #ff4961;">
+        <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+        <ion-label>E-Mail ist nicht Korrekt!</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-list class="ion-margin-bottom" *ngIf="password.hasError('hasNumber') || password.hasError('hasCapitalCase') || password.hasError('hasSmallCase') || password.hasError('hasSymbol') || password.hasError('length')">
+      <ion-item *ngIf="password.hasError('hasNumber')" style="color: #ff4961;">
+        <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+        <ion-label>Muss eine Nummer enthalten</ion-label>
+      </ion-item>
+      <ion-item *ngIf="password.hasError('hasCapitalCase')" style="color: #ff4961;">
+        <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+        <ion-label>Muss einen Grossbuchstaben enthalten</ion-label>
+      </ion-item>
+      <ion-item *ngIf="password.hasError('hasSmallCase')" style="color: #ff4961;">
+        <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+        <ion-label>Muss einen Kleinbuchstaben enthalten</ion-label>
+      </ion-item>
+      <ion-item *ngIf="password.hasError('hasSymbol')" style="color: #ff4961;">
+        <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+        <ion-label>Muss ein Symbol enthalten</ion-label>
+      </ion-item>
+      <ion-item *ngIf="password.hasError('length')" style="color: #ff4961;">
+        <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+        <ion-label>Muss mindestens 8 Zeichen lang sein</ion-label>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="password" placeholder="Password" formControlName="password2"></ion-input>
+    </ion-item>
+
+    <ion-list *ngIf="(password2.dirty || password2.touched) && password2.errors || credentials.hasError('passwordNotMatch')" class="ion-margin-bottom">
+      <ion-item *ngIf="(password2.dirty || password2.touched) && password2.errors || credentials.hasError('passwordNotMatch')" style="color: #ff4961;">
+        <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+        <ion-label>Passwörter passen nicht</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-button type="submit" expand="block" fill="solid" shape="round" [disabled]="!credentials.valid  ">
+      Registrieren
+    </ion-button>
+
+  </form>
+
+
+</ion-content>

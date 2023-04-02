@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="color: {{subject.color}};">{{homework.title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" expand="block" fill="clear" shape="round">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom">Titel</ion-card-title>
+      <ion-input  [(ngModel)]="homework.title" class="ion-margin-bottom" type="text" placeholder="Awesome Input" value="{{homework.title}}" style="font-size: 1.5em;"></ion-input>
+      <ion-button (click)="updateHomework()" expand="block" fill="solid" shape="round">
+        Titel speichern
+      </ion-button>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom">Fach</ion-card-title>
+      <ion-item (click)="colorSelect.open()" class="ion-margin-bottom">
+
+        <ion-label>Fach auswählen</ion-label>
+        <app-searchable-select #colorSelect title="Subjects" [data]="subjects" itemTextField="subjectName" itemColorField="color" (selectedChanged)="selectSubjectChanged($event)" [placeholderColor]="subject.color" [placeholderText]="subject.subjectName"></app-searchable-select>
+        
+      </ion-item>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom">Datum</ion-card-title>
+      <ion-datetime presentation="date" size="cover" class="ion-margin-bottom" [min]="today" (ionChange)="dateChanged($event)" [value]="homework.date.toDate().toISOString()"></ion-datetime>
+    </ion-card-header>
+    
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom">Notizen</ion-card-title>
+      <ion-textarea placeholder="Notizen" [autoGrow]="true" [(ngModel)]="homework.notes" [value]="homework.notes" class="ion-margin-bottom" type="text" style="font-size: 1.5em;"></ion-textarea>
+      <ion-button (click)="updateHomework()" expand="block" fill="solid" shape="round">
+        Notizen Speichern
+      </ion-button>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>

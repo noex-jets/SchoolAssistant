@@ -1,0 +1,81 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title style="color: {{subject?.color}};">{{grade?.title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" expand="block" fill="clear" shape="round">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom" >Titel</ion-card-title>
+      <ion-input type="text" placeholder="Titel" [(ngModel)]="grade.title" style="font-size: 1.5em;"></ion-input>
+      <ion-button  expand="block" fill="solid" shape="round" (click)="updateGrade()">
+        Titel speichern
+      </ion-button>
+    </ion-card-header>
+    
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom">Fach</ion-card-title>
+      <ion-item (click)="colorSelect.open()" class="ion-margin-bottom">
+
+        <ion-label>Fach auswählen</ion-label>
+        <app-searchable-select #colorSelect title="Subjects" [data]="subjects" itemTextField="subjectName" itemColorField="color" (selectedChanged)="selectSubjectChanged($event)" [placeholderColor]="subject.color" [placeholderText]="subject.subjectName" [cancelButton]="false"></app-searchable-select>
+        
+      </ion-item>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom">Datum</ion-card-title>
+      <ion-datetime presentation="date" size="cover" class="ion-margin-bottom" (ionChange)="dateChanged($event)"></ion-datetime>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom" >Note</ion-card-title>
+      <ion-input type="number" placeholder="Titel" [(ngModel)]="grade.grade" style="font-size: 1.5em;"></ion-input>
+      <ion-button  expand="block" fill="solid" shape="round" (click)="updateGrade()">
+        Note speichern
+      </ion-button>
+    </ion-card-header>
+    
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-margin-bottom" >Koeffizient</ion-card-title>
+      <ion-input type="number" placeholder="Titel" [(ngModel)]="grade.koeffizient" style="font-size: 1.5em;"></ion-input>
+      <ion-button  expand="block" fill="solid" shape="round" (click)="updateGrade()">
+        Koeffizient speichern
+      </ion-button>
+    </ion-card-header>
+    
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Zählt:</ion-card-title>
+      <ion-item>
+        <ion-label>Zählt: </ion-label>
+        <ion-toggle color="success" [checked]="grade.counting" (ionChange)="toggleChanged($event)"></ion-toggle>
+      </ion-item>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-button (click)="deleteGrade()" expand="block" fill="solid" shape="round" color="danger" class="ion-margin">
+    Note Löschen!
+  </ion-button>
+
+</ion-content>

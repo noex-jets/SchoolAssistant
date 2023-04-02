@@ -1,0 +1,66 @@
+<app-header headerValue="Hausaufgaben"></app-header>
+
+<ion-content>
+
+  <ion-segment value="toDo" [(ngModel)]="status" (ionChange)="sync()">
+    <ion-segment-button value="toDo">
+      <ion-label>Zu machen</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="done">
+      <ion-label>Gemacht</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary" (click)="openAddHomeworkModal()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+
+    </ion-fab>
+
+    <div *ngIf="status == 'toDo'">
+      <ion-card *ngFor="let homework of homeworks, index as i" clickable="true">
+        <ion-card-header (click)="openHomeworkModal(homework?.id)">
+            <ion-card-subtitle>{{subjects[i]?.subjectName}}</ion-card-subtitle>
+            <ion-card-title style="color: {{subjects[i]?.color}};">{{homework?.title}}</ion-card-title>
+            <ion-card-subtitle>{{dateConverter(homework?.date)}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content style="display: flex; align-items: center; justify-content: space-between; flex-direction: row;">
+            <ion-button (click)="homeworkIsDone(homework)" expand="block" fill="clear" shape="round" slot="icon-only" color="success">
+                <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+            <ion-button (click)="markHomework(homework)" expand="block" fill="clear" shape="round" slot="icon-only" color="warning">
+                <ion-icon name="flag-outline" *ngIf="homework?.marked != true"></ion-icon>
+                <ion-icon name="flag" *ngIf="homework?.marked == true"></ion-icon>
+            </ion-button>
+            <ion-button (click)="openHomeworkModal(homework?.id)" expand="block" fill="clear" shape="round" slot="icon-only">
+                <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+
+    <div *ngIf="status == 'done'">
+      <ion-card *ngFor="let homework of doneHomeworks, index as i" clickable="true">
+        <ion-card-header (click)="openHomeworkModal(homework?.id)">
+            <ion-card-subtitle>{{doneSubjects[i]?.subjectName}}</ion-card-subtitle>
+            <ion-card-title style="color: {{doneSubjects[i]?.color}};">{{homework.title}}</ion-card-title>
+            <ion-card-subtitle>{{dateConverter(homework?.date)}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content style="display: flex; align-items: center; justify-content: space-between; flex-direction: row;">
+            <ion-button (click)="deleteHomework(homework)" expand="block" fill="clear" shape="round" slot="icon-only" color="danger">
+                <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="markHomework(homework)" expand="block" fill="clear" shape="round" slot="icon-only" color="warning">
+                <ion-icon name="flag-outline" *ngIf="homework?.marked != true"></ion-icon>
+                <ion-icon name="flag" *ngIf="homework?.marked == true"></ion-icon>
+            </ion-button>
+            <ion-button (click)="homeworkIsNotDone(homework)" expand="block" fill="clear" shape="round" slot="icon-only">
+                <ion-icon name="arrow-undo-outline"></ion-icon>
+            </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+</ion-content>

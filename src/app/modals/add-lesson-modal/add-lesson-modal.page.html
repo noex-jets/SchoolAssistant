@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Neue Lektion</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" expand="block" fill="clear" shape="round">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="credentials" (ngSubmit)="addLesson()">
+
+    <ion-item  *ngIf="daySelectetError" class="ion-margin-bottom" style="color: #ff4961;">
+      <ion-icon name="close-circle-outline" slot="start" style="color: #ff4961;"></ion-icon>
+      <ion-label>Bitte wähle einen Tag aus!</ion-label>
+    </ion-item>
+
+    <ion-item (click)="lessonSelect.open()" class="ion-margin-bottom">
+      <ion-label>Tag auswählen</ion-label>
+      <app-searchable-select #lessonSelect title="Days" [data]="days" placeholderText="Day" itemTextField="name"  (selectedChanged)="selectChanged($event)"></app-searchable-select>
+    </ion-item>
+
+      <ion-datetime presentation="time" class="ion-margin-bottom" (ionChange)="timeChanged($event)" size="cover"></ion-datetime>
+
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="number" placeholder="Dauer" formControlName="duration"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" fill="solid" shape="round">
+      Lektion Speichern
+    </ion-button>
+
+  </form>
+
+</ion-content>

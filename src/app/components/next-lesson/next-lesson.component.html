@@ -1,0 +1,15 @@
+<h4 class="ion-margin">Nächste Lektion:</h4>
+
+<ion-card *ngIf="lesson.subjectId == null">
+  <ion-card-header>
+      <ion-card-title style="color: {{subject.color}};">{{subject.subjectName}}</ion-card-title>
+      <ion-card-subtitle *ngIf="lesson.startingTime != 0">{{(lesson.startingTime-(lesson.startingTime%60))/60}}:{{lesson.startingTime%60}} - {{(lesson.endTime-(lesson.endTime%60))/60}}:{{lesson.endTime%60}}</ion-card-subtitle>
+  </ion-card-header>
+</ion-card>
+
+<ion-card (click)="openSubjectModal(lesson.subjectId)" *ngIf="lesson.subjectId != null">
+  <ion-card-header>
+      <ion-card-title style="color: {{subject.color}};">{{subject.subjectName}}</ion-card-title>
+      <ion-card-subtitle *ngIf="lesson.startingTime != 0">{{(lesson.startingTime-(lesson.startingTime%60))/60}}:{{lesson.startingTime%60}} - {{(lesson.endTime-(lesson.endTime%60))/60}}:{{lesson.endTime%60}}</ion-card-subtitle>
+  </ion-card-header>
+</ion-card>

@@ -1,0 +1,50 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>Neue Note</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" expand="block" fill="clear" shape="round">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="credentials" (ngSubmit)="addGrade()">
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="text" placeholder="Name" formControlName="gradeTitle"></ion-input>
+    </ion-item>
+  
+    <ion-item (click)="colorSelect.open()" class="ion-margin-bottom">
+
+      <ion-label>Fach auswählen</ion-label>
+      <app-searchable-select #colorSelect title="Subjects" [data]="subjects" itemTextField="subjectName" itemColorField="color" (selectedChanged)="selectSubjectChanged($event)" placeholderColor="#88B5BF" placeholderText="Subject"></app-searchable-select>
+      
+    </ion-item>
+
+    <ion-datetime presentation="date" size="cover" class="ion-margin-bottom" (ionChange)="dateChanged($event)"></ion-datetime>
+  
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="number" placeholder="Note" formControlName="gradeNumber"></ion-input>
+    </ion-item>
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="number" placeholder="Koeffizient" formControlName="koeffizient"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Zählt: </ion-label>
+      <ion-toggle color="success" [checked]="true" (ionChange)="toggleChanged($event)"></ion-toggle>
+    </ion-item>
+  
+    <ion-button type="submit" class="ion-margin-top" expand="block" fill="solid" shape="round" [disabled]="credentials.invalid">Note speichern</ion-button>
+
+    
+
+  </form>
+
+
+</ion-content>

@@ -1,0 +1,45 @@
+<div style="
+  position: absolute;
+  top: 5px;
+  right: 5px;
+">
+  <ion-button (click)="close()" fill="clear" slot="icon-only">
+    <ion-icon name="close" color="dark"></ion-icon>
+  </ion-button>
+</div>
+<div  class="ion-margin-bottom ion-padding" style="width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+
+    <!-- Wird angezeigt, wenn ein Bild gewählt wurde -->
+  <ion-avatar>
+    <img [src]="image" *ngIf="image; else placeholderAvatar;" />
+  </ion-avatar>
+
+  <!-- Wird nur angezeigt, wenn kein Bild ausgewählt wurde -->
+  <ng-template #placeholderAvatar>
+    <ion-avatar>
+      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+  </ng-template>
+
+  <h5>{{firstname}} {{lastname}}</h5>
+</div>
+  
+    <ion-list class="ion-padding" lines="none">
+    <ion-item button (click)="goToAccountPage()">
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-label>Account</ion-label>
+    </ion-item>
+    <ion-item button (click)="logOut()">
+      <ion-icon color="danger" name="log-out" slot="start"></ion-icon>
+      <ion-label color="danger">Abmelden</ion-label>
+    </ion-item>
+    <hr style="width: 100%; background-color: var(--ion-color-dark)">
+    <ion-item button (click)="openComingSoon()">
+      <ion-icon name="cog" slot="start" ></ion-icon>
+      <ion-label>Einstellungen</ion-label>
+    </ion-item>
+    <ion-item button (click)="openComingSoon()">
+      <ion-icon slot="start" name="help-circle" (click)="openComingSoon()"></ion-icon>
+      <ion-label>Hilfe & Feedback</ion-label>
+    </ion-item>
+</ion-list>

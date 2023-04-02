@@ -1,0 +1,28 @@
+<app-header headerValue="Dashboard"></app-header>
+
+<ion-content class="">
+
+    <app-quick-action></app-quick-action>
+
+    <app-next-lesson [subject]="subject" [lesson]="lesson"></app-next-lesson>
+
+
+    <h4 class="ion-margin">Hausaufgaben: </h4>
+
+    <ion-card>
+        <ion-card-header>
+            
+            <ion-item *ngFor="let homework of homeworks, index as i">
+                <ion-label style="color: {{homeworksSubjects[i].color}}">{{homework.title}}</ion-label>
+                <ion-checkbox slot="end" (ionChange)="checked(homework)"></ion-checkbox>
+            </ion-item>
+
+            <ion-item *ngIf="homeworks.length == 0">
+                <ion-label>Keine markierten Hausaufgaben</ion-label>
+            </ion-item>
+
+        </ion-card-header>
+    </ion-card>
+
+
+</ion-content>

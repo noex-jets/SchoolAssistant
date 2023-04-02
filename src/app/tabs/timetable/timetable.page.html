@@ -1,0 +1,93 @@
+<app-header headerValue="Stundenplan"></app-header>
+
+<ion-content>
+
+
+    
+    <swiper #swiper [config]="config">
+        <ng-template swiperSlide>
+            <div class="container">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title *ngIf="config.slidesPerView < 3">Montag</ion-card-title>
+                        <ion-card-title *ngIf="config.slidesPerView >= 3">Mo</ion-card-title>
+                    </ion-card-header>
+                </ion-card>
+                <ion-card *ngFor="let lesson of lessonsOnMonday, index as i" clickable="true" (click)="openSubjectModal(lesson?.subjectId)">
+                    <ion-card-header >
+                      <ion-card-title style="color: {{subjectsOnMonday[i]?.color}}" *ngIf="config.slidesPerView >= 3">{{subjectsOnMonday[i]?.subjectName.slice(0,2)}}</ion-card-title>
+                      <ion-card-title style="color: {{subjectsOnMonday[i]?.color}}" *ngIf="config.slidesPerView < 3">{{subjectsOnMonday[i]?.subjectName}}</ion-card-title>
+                      <ion-card-subtitle>{{(lesson?.startingTime-(lesson?.startingTime%60))/60}}:{{lesson?.startingTime%60}} - {{(lesson?.endTime-(lesson?.endTime%60))/60}}:{{lesson?.endTime%60}}</ion-card-subtitle>
+                    </ion-card-header>
+                  </ion-card>
+            </div>
+            
+        </ng-template>
+        <ng-template swiperSlide>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title *ngIf="config?.slidesPerView < 3">Dienstag</ion-card-title>
+                    <ion-card-title *ngIf="config?.slidesPerView >= 3">Di</ion-card-title>
+                </ion-card-header>
+            </ion-card>
+            <ion-card *ngFor="let lesson of lessonsOnTuesday, index as i" clickable="true" (click)="openSubjectModal(lesson.subjectId)">
+                <ion-card-header >
+                  <ion-card-title style="color: {{subjectsOnTuesday[i]?.color}}" *ngIf="config?.slidesPerView >= 3">{{subjectsOnTuesday[i]?.subjectName.slice(0,2)}}</ion-card-title>
+                  <ion-card-title style="color: {{subjectsOnTuesday[i]?.color}}" *ngIf="config?.slidesPerView < 3">{{subjectsOnTuesday[i]?.subjectName}}</ion-card-title>
+                  <ion-card-subtitle>{{(lesson?.startingTime-(lesson?.startingTime%60))/60}}:{{lesson?.startingTime%60}} - {{(lesson?.endTime-(lesson?.endTime%60))/60}}:{{lesson?.endTime%60}}</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+        </ng-template>
+        <ng-template swiperSlide>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title *ngIf="config?.slidesPerView < 3">Mittwoch</ion-card-title>
+                    <ion-card-title *ngIf="config?.slidesPerView >= 3">Mi</ion-card-title>
+                </ion-card-header>
+            </ion-card>
+            <ion-card *ngFor="let lesson of lessonsOnWednesday, index as i" clickable="true" (click)="openSubjectModal(lesson?.subjectId)">
+                <ion-card-header >
+                  <ion-card-title style="color: {{subjectsOnWednesday[i]?.color}}" *ngIf="config?.slidesPerView >= 3">{{subjectsOnWednesday[i]?.subjectName.slice(0,2)}}</ion-card-title>
+                  <ion-card-title style="color: {{subjectsOnWednesday[i]?.color}}" *ngIf="config?.slidesPerView < 3">{{subjectsOnWednesday[i]?.subjectName}}</ion-card-title>
+                  <ion-card-subtitle>{{(lesson?.startingTime-(lesson?.startingTime%60))/60}}:{{lesson?.startingTime%60}} - {{(lesson?.endTime-(lesson?.endTime%60))/60}}:{{lesson?.endTime%60}}</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+        </ng-template>
+        <ng-template swiperSlide>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title *ngIf="config?.slidesPerView < 3">Donnerstag</ion-card-title>
+                    <ion-card-title *ngIf="config?.slidesPerView >= 3">Do</ion-card-title>
+                </ion-card-header>
+            </ion-card>
+            <ion-card *ngFor="let lesson of lessonsOnThursday, index as i" clickable="true" (click)="openSubjectModal(lesson?.subjectId)">
+                <ion-card-header >
+                  <ion-card-title style="color: {{subjectsOnThursday[i]?.color}}" *ngIf="config?.slidesPerView >= 3">{{subjectsOnThursday[i]?.subjectName.slice(0,2)}}</ion-card-title>
+                  <ion-card-title style="color: {{subjectsOnThursday[i]?.color}}" *ngIf="config?.slidesPerView < 3">{{subjectsOnThursday[i]?.subjectName}}</ion-card-title>
+                  <ion-card-subtitle>{{(lesson?.startingTime-(lesson?.startingTime%60))/60}}:{{lesson?.startingTime%60}} - {{(lesson?.endTime-(lesson?.endTime%60))/60}}:{{lesson?.endTime%60}}</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+        </ng-template>
+        <ng-template swiperSlide>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title *ngIf="config?.slidesPerView < 3">Freitag</ion-card-title>
+                    <ion-card-title *ngIf="config?.slidesPerView >= 3">Fr</ion-card-title>
+                </ion-card-header>
+            </ion-card>
+            <ion-card *ngFor="let lesson of lessonsOnFriday, index as i" clickable="true" (click)="openSubjectModal(lesson?.subjectId)">
+                <ion-card-header >
+                  <ion-card-title style="color: {{subjectsOnFriday[i]?.color}}" *ngIf="config.slidesPerView >= 3">{{subjectsOnFriday[i]?.subjectName.slice(0,2)}}</ion-card-title>
+                  <ion-card-title style="color: {{subjectsOnFriday[i]?.color}}" *ngIf="config.slidesPerView < 3">{{subjectsOnFriday[i]?.subjectName}}</ion-card-title>
+                  <ion-card-subtitle>{{(lesson?.startingTime-(lesson?.startingTime%60))/60}}:{{lesson?.startingTime%60}} - {{(lesson?.endTime-(lesson?.endTime%60))/60}}:{{lesson?.endTime%60}}</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+        </ng-template>
+    </swiper>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="selectView()">
+        <ion-fab-button color="primary">
+          <ion-icon name="settings"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

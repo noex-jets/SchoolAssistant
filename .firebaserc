@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "schoolassistant32": {
+      "hosting": {
+        "app": [
+          "schoolassistant32"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "schoolassistant32"
+  }
+}

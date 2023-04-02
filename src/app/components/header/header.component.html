@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    
+      <!-- Wird angezeigt, wenn ein Bild gewählt wurde -->
+      <ion-avatar slot="end" style="height: 40px; width: 40px;" class="ion-margin" (click)="openAvatarPopOverModal()">
+        <img [src]="image" *ngIf="image; else placeholderAvatar;" />
+      </ion-avatar>
+  
+      <!-- Wird nur angezeigt, wenn kein Bild ausgewählt wurde -->
+      <ng-template #placeholderAvatar (click)="openAvatarPopOverModal()">
+        <ion-avatar slot="end" style="height: 25px; width: 25px;" class="ion-margin">
+          <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+      </ng-template>
+    <ion-title>{{headerValue}}</ion-title>
+  </ion-toolbar>
+</ion-header>

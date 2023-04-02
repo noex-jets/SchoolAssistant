@@ -1,0 +1,40 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.swiper-pagination{
+    position: fixed;
+    z-index: 100;
+    
+}
+
+:host{
+    ::ng-deep .swiper-slide {
+        
+    }
+
+    ::ng-deep .swiper-pagination-bullet-active {
+        color: #88b5bf;
+        background: #88b5bf;
+    }
+}
+
+
+ion-fab-button[data-desc] {
+    position: relative;
+}
+
+ion-fab-button[data-desc]::after {
+    position: absolute;
+    content: attr(data-desc);
+    z-index: 1;
+    right: 50px;
+    bottom: 7px;
+    color: var(--ion-color-contrast, #fff);
+    background-color: var(--ion-color-base, #fff);
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}

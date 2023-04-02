@@ -1,0 +1,71 @@
+
+<!-- Dieser Knopf erscheint oben rechts und ermöglicht dem Benutzer die Slides zu Überspringen -->
+<div class="buttonContainer" *ngIf="skipButtonActive" id="skipButton">
+  <ion-button (click)="skipSlides()" fill="clear" shape="round" >
+    Skip
+  </ion-button>
+</div>
+
+<!-- Dieser Knopf erscheint unten zentriert und ermöglicht dem Benutzer auf die zu der nächsten Slide zu kommen -->
+<div class="nextButton" id="nextButton">
+  <ion-button (click)="nextSlide()" fill="clear" shape="round" slot="icon-only">
+    <ion-icon name="arrow-forward-outline" size="large"></ion-icon>
+  </ion-button>
+</div>
+
+<ion-content>
+
+    <!-- Slides mit Vorstellung der App -->
+  <swiper #swiper  [config]="config" (slideChange)="slideChanged()">
+
+    <!-- Slide 1 -->
+    <ng-template swiperSlide>
+      <img src="../../assets/logo/logo.png" alt="" class="logo">
+    </ng-template>
+
+    <!-- Slide 2 -->
+    <ng-template swiperSlide class="ion-padding slide">
+      <img src="../../assets/slides/Slide1Edited.png" alt="" class="fixHeight">
+      <h1>Noten</h1>
+      <p>SchoolAssistant hilft dir, deine Noten im Blick zu halten. Er berechnet deine Durchschnitte und hilft dir dabei, Ziele zu setzen.</p>
+    </ng-template>
+
+    <!-- Slide 3 -->
+    <ng-template swiperSlide class="ion-padding">
+        <img src="../../assets/slides/Slide2.png" alt="" class="fixHeight">
+        <h1>Stundenplan</h1>
+       <p>SchoolAssistent hilft dir, deinen Stundenplan nie zu vergessen. Er erinnert dich, wann, wo und mit wem du als nächstes Unterricht hast.</p>
+    </ng-template>
+
+    <!-- Slide 4 -->
+    <ng-template swiperSlide class="ion-padding">
+      <img src="../../assets/slides/Slide3.png" alt="" class="fixHeight">
+      <h1>Hausaufgaben</h1>
+      <p>Das Vergessen der Hausaufgaben hat ein Ende. Dank SchoolAssistent vergisst du nie mehr deine Hausaufgaben.</p>
+    </ng-template>
+
+    <!-- Slide 5 -->
+    <!-- <ng-template swiperSlide class="ion-padding">
+      <img src="../../assets/slides/Slide4.png" alt="" class="fixHeight">
+      <h1>Lernen</h1>
+     <p>SchoolAssistent hilft dir beim Lernen, egal ob Vokabular, Verben, Formeln oder sonstige Lernziele</p>
+    </ng-template> -->
+
+    <!-- Slide 6 mit Login / Register Buttons -->
+    <ng-template swiperSlide class="ion-padding">
+      <img src="../../assets/logo/logo.png" alt="" class="logo">
+
+      <!-- Buttons um zum Login oder zum Registrieren führen       -->
+      <div class="buttons ion-padding">
+        <ion-button (click)="goToRegister()" expand="full" fill="solid" shape="round">
+          Registrieren
+        </ion-button>
+        <ion-button (click)="goToLogIn()" expand="full" fill="clear" shape="round">
+          Log In
+        </ion-button>
+      </div>
+      
+    </ng-template>
+  </swiper>
+  
+</ion-content>

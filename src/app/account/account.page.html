@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Benutzerkonto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div  class="ion-margin-bottom ion-padding" style="width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+
+    <!-- Wird angezeigt, wenn ein Bild gewählt wurde -->
+    <ion-avatar (click)="openFullscreenProfileImageModal()" class="ion-margin-bottom">
+      <img [src]="image" *ngIf="image; else placeholderAvatar;" />
+    </ion-avatar>
+
+    <!-- Wird nur angezeigt, wenn kein Bild ausgewählt wurde -->
+    <ng-template #placeholderAvatar (click)="changeProfileImage()" class="ion-margin-bottom">
+      <ion-avatar>
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+    </ng-template>
+
+    <ion-button expand="block" fill="clear" shape="round" (click)="changeProfileImage()">
+      Profilbild ändern
+    </ion-button>
+
+    
+
+    <ion-card style="width: 100%;">
+      <ion-card-header class="ion-margin-bottom">
+        <ion-card-title class="ion-margin-bottom">Vornamen</ion-card-title>
+        <ion-input [(ngModel)]="firstnameInput" class="ion-margin-bottom" type="text" placeholder="Awesome Input" value="{{firstname}}" style="font-size: 1.5em;"></ion-input>
+        <ion-button (click)="changeFirstname()" expand="block" fill="solid" shape="round">
+          Vornamen speichern
+        </ion-button>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card style="width: 100%;">
+      <ion-card-header class="ion-margin-bottom">
+        <ion-card-title class="ion-margin-bottom">Nachnamen</ion-card-title>
+        <ion-input id="lastnameInput" [(ngModel)]="lastnameInput" class="ion-margin-bottom" type="text" placeholder="Awesome Input" value="{{lastname}}" style="font-size: 1.5em;"></ion-input>
+        <ion-button (click)="changeLastname()" expand="block" fill="solid" shape="round">
+          Nachnamen speichern
+        </ion-button>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-button style="width: 100%;" (click)="resetPassword()" expand="full" fill="solid" shape="round" color="warning">
+      Passwort zurücksetzen
+    </ion-button>
+
+    <ion-button (click)="deletAccount()" expand="full" fill="solid" shape="round" style="width: 100%;" color="danger">
+      Account löschen
+    </ion-button>
+
+  </div>
+
+</ion-content>

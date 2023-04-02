@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>Wunschnoten Rechner</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" expand="block" fill="clear" shape="round">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Wunschnote:</ion-card-title>
+      <ion-input type="number" placeholder="6" [(ngModel)]="grade"></ion-input>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Koeffizient:</ion-card-title>
+      <ion-input type="number" placeholder="6" [(ngModel)]="koeffizient"></ion-input>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Benötigte Note: </ion-card-title>
+      <ion-input type="number" value="{{(grade*(count+koeffizient)-summ)/koeffizient}}" [disabled]="true"></ion-input>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>

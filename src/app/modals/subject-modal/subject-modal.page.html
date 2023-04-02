@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="color: {{subject.color}};">{{subject.subjectName}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" expand="block" fill="clear" shape="round">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card class="ion-no-margin ion-margin-bottom">
+    <ion-card-header class="ion-margin-bottom">
+      <ion-card-title class="ion-margin-bottom">Fach</ion-card-title>
+      <ion-input id="lastnameInput" [(ngModel)]="subject.subjectName" class="ion-margin-bottom" type="text" placeholder="Awesome Input" value="{{subject.subjectName}}" style="font-size: 1.5em;"></ion-input>
+      <ion-button (click)="updateSubject()" expand="block" fill="solid" shape="round">
+        Fach speichern
+      </ion-button>
+    </ion-card-header>
+  </ion-card>
+  <ion-card class="ion-no-margin ion-margin-bottom">
+    <ion-card-header class="ion-margin-bottom">
+      <ion-card-title class="ion-margin-bottom">Farbe</ion-card-title>
+      <ion-item (click)="colorSelect.open()" class="ion-margin-bottom">
+
+        <ion-label>Farbe auswählen</ion-label>
+        <app-searchable-select #colorSelect title="Colors" [data]="colors" itemTextField="name" itemColorField="color" (selectedChanged)="selectChanged($event)" placeholderColor="{{subject.color}}" placeholderText="{{colorName}}"></app-searchable-select>
+        
+      </ion-item>
+      <ion-button (click)="updateSubject()" expand="block" fill="solid" shape="round">
+        Farbe speichern
+      </ion-button>
+    </ion-card-header>
+  </ion-card>
+  <ion-card class="ion-no-margin ion-margin-bottom">
+    <ion-card-header class="ion-margin-bottom">
+      <ion-card-title class="ion-margin-bottom">Lektionen</ion-card-title>
+      <ion-item>
+        <ion-label>Lektionen</ion-label>
+        <ion-button (click)="openAddLessonModal()" expand="block" fill="clear" shape="round">
+          <ion-icon name="add-outline"></ion-icon>
+          Neue Lektion
+        </ion-button>
+      </ion-item>
+        <ion-item *ngFor="let lesson of lessons; index as i" (click)="deleteLesson(lesson.index, i, lesson.id)">
+          <ion-label>{{lesson.day}} {{(lesson.startingTime-(lesson.startingTime%60))/60}}:{{lesson.startingTime%60}} - {{(lesson.endTime-(lesson.endTime%60))/60}}:{{lesson.endTime%60}}</ion-label>
+          <ion-button  expand="block" fill="clear" shape="round" color="medium">
+            <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-item>
+    </ion-card-header>
+  </ion-card>
+  <ion-button (click)="deleteSubject()" expand="block" fill="solid" shape="round" color="danger">
+    Fach löschen
+  </ion-button>
+</ion-content>

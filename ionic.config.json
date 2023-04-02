@@ -1,0 +1,8 @@
+{
+  "name": "SchoolAssistant",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "defaultBrowser": "firefox"
+}

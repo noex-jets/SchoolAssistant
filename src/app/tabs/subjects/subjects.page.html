@@ -1,0 +1,17 @@
+<app-header headerValue="Fächer"></app-header>
+
+<ion-content >
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary" (click)="openAddSubjectModal()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ion-card *ngFor="let subject of subjects" clickable="true" (click)="openSubjectModal(subject.id)" >
+        <ion-card-header >
+          <ion-card-title style="color: {{subject.color}};">{{subject.subjectName}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+
+</ion-content>

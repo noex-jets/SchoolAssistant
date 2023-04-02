@@ -1,0 +1,41 @@
+<div *ngIf="selected.length; else placeholder">
+  <span *ngFor="let item of selected; let last = last" style="color: {{leafColor(item)}};">
+    {{leafName(item)}}{{ last ? '': ','}}
+  </span>
+</div>
+
+<ng-template #placeholder > <span style="color: {{placeholderColor}};">{{placeholderText}}</span> </ng-template>
+
+<ion-modal [isOpen]="isOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start" *ngIf="cancelButton">
+          <ion-button (click)="cancel()">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title style="text-align: center;">{{ title }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="select()" *ngIf="multiple">
+            Auswählen
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+      <ion-item *ngFor="let item of data">
+        <ion-checkbox slot="start" [(ngModel)]="item.selected" (ionChange)="itemSelected()"></ion-checkbox>
+        <ion-label style="color: {{leafColor(item)}};">{{leafName(item)}}</ion-label>
+      </ion-item>
+
+      <ion-button (click)="openAddLessonModal()" expand="block" fill="solid" shape="round" *ngIf="addLessonButton">
+        Neue Lektion
+      </ion-button>
+      
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

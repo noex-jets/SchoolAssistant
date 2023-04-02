@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title style="color: {{subject?.color}};">{{subject?.subjectName}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" expand="block" fill="clear" shape="round">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="openAddGradeModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-card *ngFor="let grade of grades" (click)="openGradeModal(grade, subject)">
+    <ion-card-header >
+      <ion-card-subtitle>{{grade?.date | dateFormatter}}</ion-card-subtitle>
+      <ion-card-title>{{grade?.title}}</ion-card-title>
+      <ion-chip color="success" class="ion-no-margin ion-margin-end ion-margin-top" *ngIf="grade?.grade >= 4">
+        <ion-label>Note: {{grade?.grade | gradeFormatter: 0.01}}</ion-label>
+      </ion-chip>
+      <ion-chip color="danger" class="ion-no-margin ion-margin-end ion-margin-top" *ngIf="grade?.grade < 4">
+        <ion-label>Note: {{grade?.grade | gradeFormatter: 0.01}}</ion-label>
+      </ion-chip>
+      <ion-chip color="primary" class="ion-no-margin ion-margin-end ion-margin-top">
+        <ion-label>Koeffizient: {{grade?.koeffizient}}</ion-label>
+      </ion-chip>
+    </ion-card-header>
+  </ion-card>
+
+  
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title color="success" *ngIf="subject?.grade >= 4">Note: {{subject?.grade | gradeFormatter: 0.01}}</ion-title>
+    <ion-title color="danger" *ngIf="subject?.grade < 4">Note: {{subject?.grade | gradeFormatter: 0.01}}</ion-title>
+    <ion-title><ion-card-subtitle>Kompensationspunkte: {{subject?.grade | pluspointsFormatter}}</ion-card-subtitle></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openGradeCalculator(subject)">
+        <ion-icon name="calculator-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,37 @@
+<app-header headerValue="Noten"></app-header>
+
+<ion-content>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary" (click)="openAddGradeModal()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+
+    </ion-fab>
+
+    <ion-card *ngFor="let subject of subjects" (click)="openGradesOfSubjectModal(subject)">
+        <ion-card-header >
+            <ion-card-title style="color: {{subject?.color}}">{{subject?.subjectName}}</ion-card-title>
+            <ion-chip *ngIf="subject.grade >= 4 && subject.grade != 0" color="success" class="ion-no-margin ion-margin-end ion-margin-top">
+                <ion-label>Note: {{subject?.grade | gradeFormatter: 0.01}}</ion-label>
+            </ion-chip>
+            <ion-chip *ngIf="subject.grade < 4 && subject.grade != 0" color="danger" class="ion-no-margin ion-margin-end ion-margin-top">
+                <ion-label>Note: {{subject?.grade | gradeFormatter: 0.01}}</ion-label>
+            </ion-chip>
+            <ion-chip color="primary" class="ion-no-margin ion-margin-end ion-margin-top">
+                <ion-label>Kompensationspunkte: {{subject?.grade | pluspointsFormatter}}</ion-label>
+            </ion-chip>
+        </ion-card-header>
+    </ion-card>
+
+   
+    
+
+</ion-content>
+
+<ion-footer class="ion-text-center">
+    <ion-toolbar>
+        <ion-title *ngIf="grade>= 4" color="success">Note: {{grade | gradeFormatter: 0.01}}</ion-title>
+        <ion-title *ngIf="grade< 4" color="danger">Note: {{grade | gradeFormatter: 0.01}}</ion-title>
+        <ion-card-subtitle>Kompensationspunkte: {{pluspoints}}</ion-card-subtitle>
+    </ion-toolbar>
+</ion-footer>
